@@ -13,19 +13,38 @@ class ImageList {
   private head: ImageNode | null;
   private current: ImageNode | null;
   private size: number;
+  private tail: ImageNode | null;
+
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.current = null;
+    this.size = 0;
+  }
 
   append(data: string): void {
     const newNode = new ImageNode(data);
     if (!this.head) {
       this.head = newNode;
+      this.tail = newNode;
+
       this.current = newNode;
+
+      this.head.prev = this.tail;
+      this.tail.next = this.head;
     } else {
-      let temp = this.head;
-      while (temp.next) {
-        temp = temp.next;
+      //connect newNode to next and prev
+      newNode.next = this.head;
+      newNode.prev = this.tail;
+
+      if (this.tail) {
+        this.tail.next = newNode;
       }
-      temp.next = newNode;
-      newNode.prev = temp;
+      //update tail
+      this.tail = newNode;
+
+      //update head prev connection to new node
+      this.head.prev = this.tail;
     }
     this.size++;
   }
@@ -33,13 +52,13 @@ class ImageList {
   next() {
     if (this.hasNext()) {
       this.current = this.current?.next || null;
-      return this.current?.data || null;
+      return this.current?.data;
     }
     return null;
   }
 
   hasNext(): boolean {
-    return !!this.current && this.current?.next !== null;
+    return !!this.current && this.current?.next !== this.head;
   }
 
   prev() {
@@ -51,7 +70,7 @@ class ImageList {
   }
 
   hasPrev(): boolean {
-    return !!this.current && this.current?.prev !== null;
+    return !!this.current && this.current?.prev !== this.tail;
   }
 
   getCurrent() {
@@ -60,6 +79,39 @@ class ImageList {
 
   getSize(): number {
     return this.size;
+  }
+
+  //open the access of head node in case of loop through
+  getHead() {
+    if (this.head) {
+      this.current = this.head;
+      return this.current.data;
+    }
+    return null;
+  }
+
+  //open the access of tail node in case of loop through
+  getTail() {
+    if (this.tail) {
+      this.current = this.tail;
+      return this.current.data;
+    }
+
+    return null;
+  }
+
+  getGallery() {
+    const images: string[] = [];
+    let current = this.head;
+
+    if (!current) return images;
+
+    do {
+      images.push(current.data);
+      current = current.next as ImageNode;
+    } while (current !== this.head);
+
+    return images;
   }
 }
 

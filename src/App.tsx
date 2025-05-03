@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <div className='w-full'>
-        <ImageGalleryList images={imageList} loop={false} />
+        <ImageGalleryList gridAll={false} images={imageList} loop={true} />
       </div>
     </>
   );

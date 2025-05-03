@@ -23,7 +23,7 @@ export default function ImageViewer({
 
   const [currentImage, setCurrentImage] = useState(Gallery.getCurrent());
 
-  const [galleryImages] = useState(Gallery.getGallery());
+  const [galleryImages] = useState(Gallery.getGallery() || []);
 
   const handleNext = () => {
     if (loop) {
@@ -45,10 +45,26 @@ export default function ImageViewer({
     }
   };
 
+  function handleKeyUp(e) {
+    console.log(e);
+    if (e.code === "ArrowLeft") {
+      handlePrevious();
+    }
+
+    if (e.code === "ArrowRight") {
+      handleNext();
+    }
+  }
+
   return (
     <>
-      <div className='flex flex-col items-center justify-center max-h-screen overflow-hidden'>
-        <div className='relative overflow-hidden rounded-lg shadow-lg'>
+      <div
+        className='flex flex-col items-center justify-center max-h-screen overflow-hidden'
+        onKeyUp={handleKeyUp}
+        tabIndex={0}>
+        <div
+          className='relative overflow-hidden rounded-lg shadow-lg'
+          onKeyUp={handleKeyUp}>
           <img
             src={currentImage || ""}
             alt='Gallery'
@@ -72,23 +88,25 @@ export default function ImageViewer({
             <FaArrowRightLong size={24} />
           </Button>
         </div>
-        <div className='flex p-2 justify-center items-center scroll-auto overflow-hidden my-2'>
-          {galleryImages?.map((item, index) => {
-            console.log(item);
-            return (
-              <div key={`item-${index}`}>
-                <img
-                  src={item}
-                  alt=''
-                  className={`cursor-pointer ${
-                    currentImage === item ? "" : "opacity-80"
-                  }`}
-                  onClick={() => setCurrentImage(item)}
-                />
-              </div>
-            );
-          })}
-        </div>
+        {gridAll && (
+          <div className='flex p-2 justify-center items-center scroll-auto overflow-hidden my-2'>
+            {galleryImages?.map((item, index) => {
+              console.log(item);
+              return (
+                <div key={`item-${index}`}>
+                  <img
+                    src={item}
+                    alt=''
+                    className={`cursor-pointer ${
+                      currentImage === item ? "" : "opacity-80"
+                    }`}
+                    onClick={() => setCurrentImage(item)}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );

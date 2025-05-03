@@ -62,9 +62,7 @@ export default function ImageViewer({
         className='flex flex-col items-center justify-center max-h-screen overflow-hidden'
         onKeyUp={handleKeyUp}
         tabIndex={0}>
-        <div
-          className='relative overflow-hidden rounded-lg shadow-lg'
-          onKeyUp={handleKeyUp}>
+        <div className='relative overflow-hidden rounded-lg shadow-lg'>
           <img
             src={currentImage || ""}
             alt='Gallery'

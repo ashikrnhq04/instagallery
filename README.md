@@ -58,8 +58,9 @@ return <GalleryViewer galleryImages={images} loop={true} gridAll={true} />;
 
 `npm run dev`
 
-### One noticiable issue
+### To be improved
 
-On clicking a thumbnail, the image will be in viewer and following that, the prev/next button may not work properly. I'll handle this in future update.
+- On clicking a thumbnail, the image will be in viewer and following that, the prev/next button may not follow the image order properly.
+- Smooth transition/slideshow feature
 
 ![screenshot](screenshot/image-gallery.png)

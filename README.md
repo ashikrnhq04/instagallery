@@ -63,4 +63,4 @@ return <GalleryViewer galleryImages={images} loop={true} gridAll={true} />;
 - On clicking a thumbnail, the image will be in viewer and following that, the prev/next button may not follow the image order properly.
 - Smooth transition/slideshow feature
 
-![screenshot](screenshot/image-gallery.png)
+![screenshot](screenshot.png)

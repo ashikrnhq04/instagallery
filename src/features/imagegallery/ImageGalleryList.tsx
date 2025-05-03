@@ -87,7 +87,7 @@ export default function ImageViewer({
           </Button>
         </div>
         {gridAll && (
-          <div className='flex p-2 justify-center items-center scroll-auto overflow-hidden my-2'>
+          <div className='flex p-2 justify-center items-center scroll-auto overflow-hidden mt-2 max-w-5xl'>
             {galleryImages?.map((item, index) => {
               console.log(item);
               return (

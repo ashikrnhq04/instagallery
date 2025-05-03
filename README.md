@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+# 🖼️ React Image Gallery Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive image gallery component built with **React**, featuring:
 
-Currently, two official plugins are available:
+- Keyboard navigation (`ArrowLeft`, `ArrowRight`)
+- Previous/Next navigation buttons
+- Optional looping behavior
+- Clickable image thumbnails
+- Scrollable thumbnail preview strip
+- Responsive design and accessibility support
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ✅ Navigate through images using left/right arrows on the keyboard
+- ✅ Loop through gallery (configurable)
+- ✅ Thumbnails images (configurable)
+- ✅ Click thumbnails to change the main image
+- ✅ Responsive design with modern styling, TailwindCSS supported.
+- ✅ Accessible (`tabIndex` support, keyboard operable)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 📦 Installation
+
+Clone the repo and install dependencies:
+
+```
+git clone https://github.com/your-username/react-image-gallery.git
+cd react-image-gallery
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import GalleryViewer from './components/GalleryViewer';
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+const images = [
+'/images/photo1.jpg',
+'/images/photo2.jpg',
+'/images/photo3.jpg',
+];
+
 ```
+export default function App() {
+return <GalleryViewer galleryImages={images} loop={true} gridAll={true} />;
+}
+```
+
+| Prop            | Type       | Default      | Description                               |
+| --------------- | ---------- | ------------ | ----------------------------------------- |
+| `galleryImages` | `string[]` | **Required** | Array of image URLs to display            |
+| `loop`          | `boolean`  | `false`      | Whether to loop around on next/prev click |
+| `gridAll`       | `boolean`  | `true`       | Show/hide thumbnail preview strip         |
+
+# Development
+
+`npm run dev`
+
+### One noticiable issue
+
+On clicking a thumbnail, the image will be in viewer and following that, the prev/next button may not work properly. I'll handle this in future update.
+
+![screenshot](screenshot/image-gallery.png)

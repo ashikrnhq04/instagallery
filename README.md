@@ -32,8 +32,9 @@ cd react-image-gallery
 npm install
 ```
 
-# Usage
+## Usage
 
+```
 import GalleryViewer from './components/GalleryViewer';
 
 const images = [
@@ -42,7 +43,6 @@ const images = [
 '/images/photo3.jpg',
 ];
 
-```
 export default function App() {
 return <GalleryViewer galleryImages={images} loop={true} gridAll={true} />;
 }
@@ -54,7 +54,7 @@ return <GalleryViewer galleryImages={images} loop={true} gridAll={true} />;
 | `loop`          | `boolean`  | `false`      | Whether to loop around on next/prev click |
 | `gridAll`       | `boolean`  | `true`       | Show/hide thumbnail preview strip         |
 
-# Development
+## Development
 
 `npm run dev`
 

@@ -45,8 +45,7 @@ export default function ImageViewer({
     }
   };
 
-  function handleKeyUp(e) {
-    console.log(e);
+  function handleKeyUp(e: React.KeyboardEvent) {
     if (e.code === "ArrowLeft") {
       handlePrevious();
     }
@@ -61,7 +60,8 @@ export default function ImageViewer({
       <div
         className='flex flex-col items-center justify-center max-h-screen overflow-hidden'
         onKeyUp={handleKeyUp}
-        tabIndex={0}>
+        tabIndex={0}
+      >
         <div className='relative overflow-hidden rounded-lg shadow-lg'>
           <img
             src={currentImage || ""}
@@ -74,7 +74,8 @@ export default function ImageViewer({
             onClick={handlePrevious}
             size='icon'
             variant='outline'
-            className='absolute top-1/2 left-4 transform -translate-y-1/2 rounded-full bg-white/40 border-white border-2 hover:bg-white cursor-pointer'>
+            className='absolute top-1/2 left-4 transform -translate-y-1/2 rounded-full bg-white/40 border-white border-2 hover:bg-white cursor-pointer'
+          >
             <FaArrowLeftLong size={24} />
           </Button>
           <Button
@@ -82,14 +83,14 @@ export default function ImageViewer({
             onClick={handleNext}
             size='icon'
             variant='outline'
-            className='absolute top-1/2 right-4 transform -translate-y-1/2 rounded-full border-white border-2 hover:bg-white cursor-pointer bg-white/40'>
+            className='absolute top-1/2 right-4 transform -translate-y-1/2 rounded-full border-white border-2 hover:bg-white cursor-pointer bg-white/40'
+          >
             <FaArrowRightLong size={24} />
           </Button>
         </div>
         {gridAll && (
           <div className='flex p-2 justify-center items-center scroll-auto overflow-hidden mt-2 max-w-5xl'>
             {galleryImages?.map((item, index) => {
-              console.log(item);
               return (
                 <div key={`item-${index}`}>
                   <img
@@ -98,7 +99,10 @@ export default function ImageViewer({
                     className={`cursor-pointer ${
                       currentImage === item ? "" : "opacity-80"
                     }`}
-                    onClick={() => setCurrentImage(item)}
+                    onClick={() => {
+                      setCurrentImage(item);
+                      Gallery.setCurrent(item);
+                    }}
                   />
                 </div>
               );

@@ -73,6 +73,26 @@ class ImageList {
     return !!this.current && this.current?.prev !== this.tail;
   }
 
+  /**
+   *
+   * @param data The image URL as string
+   * @description This function to set current node manually based on data
+   */
+  setCurrent(data: string) {
+    let current = this.head;
+
+    if (!current) return;
+
+    do {
+      if (current.data === data) {
+        this.current = current;
+        break;
+      }
+      current = current?.next as ImageNode;
+    } while (current.next !== this.head);
+
+    console.log("this current", this.current);
+  }
   getCurrent() {
     return this.current?.data || null;
   }

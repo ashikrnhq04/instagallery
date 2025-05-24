@@ -97,7 +97,7 @@ export default function ImageViewer({
                     src={item}
                     alt=''
                     className={`cursor-pointer ${
-                      currentImage === item ? "" : "opacity-80"
+                      currentImage === item ? "opacity-100" : "opacity-80"
                     }`}
                     onClick={() => {
                       setCurrentImage(item);

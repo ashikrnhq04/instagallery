@@ -79,19 +79,18 @@ class ImageList {
    * @description This function to set current node manually based on data
    */
   setCurrent(data: string) {
-    let current = this.head;
+    let currentNode = this.head;
 
-    if (!current) return;
+    if (!currentNode) return;
 
     do {
-      if (current.data === data) {
-        this.current = current;
-        break;
-      }
-      current = current?.next as ImageNode;
-    } while (current.next !== this.head);
+      if (currentNode.data == data) {
+        this.current = currentNode;
 
-    console.log("this current", this.current);
+        return;
+      }
+      currentNode = currentNode?.next as ImageNode;
+    } while (currentNode !== this.head);
   }
   getCurrent() {
     return this.current?.data || null;
